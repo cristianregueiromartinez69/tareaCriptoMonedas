@@ -6,15 +6,17 @@ import services.Wallet;
 import javax.swing.*;
 import java.awt.*;
 
+import static java.awt.Color.*;
 import static services.Main.ventana;
 
 public class Ventana extends JFrame {
-    private JPanel options;
+    private static JPanel options;
     private static JPanel walletPanel;
     private static Wallet wallet;
 
     public Ventana(Wallet wallet) {
         walletPanel = new WalletPanel(wallet);
+        options = new OptionPanel(wallet);
         Ventana.wallet = wallet;
 
         setTitle("Ventana");
@@ -28,6 +30,14 @@ public class Ventana extends JFrame {
         c.gridx = 0;
         c.gridy = 0;
         add(walletPanel, c);
+
+        c.gridx = 1;
+        c.gridy = 0;
+        add(Box.createHorizontalStrut(30), c);
+
+        c.gridx = 2;
+        c.gridy = 0;
+        add(options, c);
 
         setVisible(true);
 
@@ -43,6 +53,19 @@ public class Ventana extends JFrame {
         GridBagConstraints c = new GridBagConstraints();
         ventana.add(walletPanel);
         walletPanel.setVisible(true);
+        ventana.validate();
+        ventana.repaint();
+    }
+    public static JPanel nuevoOptionPanel(Wallet wallet){
+        options = new OptionPanel(wallet);
+        return options;
+    }
+    public static void repintarOptions() {
+        ventana.remove(options);
+        options = nuevoOptionPanel(wallet);
+        GridBagConstraints c = new GridBagConstraints();
+        ventana.add(options);
+        options.setVisible(true);
         ventana.validate();
         ventana.repaint();
     }

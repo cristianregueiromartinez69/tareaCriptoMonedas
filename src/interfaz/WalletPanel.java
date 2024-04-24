@@ -27,6 +27,7 @@ public class WalletPanel extends JPanel {
         setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
         c.fill = GridBagConstraints.BOTH;
+        setBackground(Color.LIGHT_GRAY);
 
         numeroBitcoin = new JLabel(wallet.getBitCoins().toString());
         numeroEthereum = new JLabel(wallet.getEthereum().toString());

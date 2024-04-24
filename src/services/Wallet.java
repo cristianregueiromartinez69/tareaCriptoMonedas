@@ -107,6 +107,21 @@ public class Wallet {
                 break;
         }
     }
+    public Double precioTransaccion(int opcion){
+        return switch (opcion) {
+            case BITCOIN -> bitCoinStatus.getPrice();
+            case ETHEREUM -> ethereumStatus.getPrice();
+            case DOGECOIN -> dogeCoinStatus.getPrice();
+            default -> null;
+        };
+    }
+    public boolean aceptarTransaccion(Double precio, int opcion){
+        if (precio < euros) {
+            euros = euros - precio;
+            comprarCriptomoneda(opcion, 1);
+            return true;
+        }else return false;
+    }
 
     public Double getEuros() {
         return euros;
@@ -138,5 +153,29 @@ public class Wallet {
 
     public void setDogeCoin(Double dogeCoin) {
         this.dogeCoin = dogeCoin;
+    }
+
+    public BitCoin getBitCoinStatus() {
+        return bitCoinStatus;
+    }
+
+    public void setBitCoinStatus(BitCoin bitCoinStatus) {
+        this.bitCoinStatus = bitCoinStatus;
+    }
+
+    public DogeCoin getDogeCoinStatus() {
+        return dogeCoinStatus;
+    }
+
+    public void setDogeCoinStatus(DogeCoin dogeCoinStatus) {
+        this.dogeCoinStatus = dogeCoinStatus;
+    }
+
+    public Ethereum getEthereumStatus() {
+        return ethereumStatus;
+    }
+
+    public void setEthereumStatus(Ethereum ethereumStatus) {
+        this.ethereumStatus = ethereumStatus;
     }
 }
