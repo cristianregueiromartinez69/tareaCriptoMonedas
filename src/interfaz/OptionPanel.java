@@ -81,11 +81,36 @@ public class OptionPanel extends JPanel {
         c.gridy = 3;
         add(comprarDogeCoin, c);
 
+        c.gridx = 3;
+        c.gridy = 4;
+        add(new JLabel("powered by CoinGekoAPI"), c);
+
         actualizarPrecios.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 wallet.acturalizarPrecios();
                 ventana.repintarOptions();
+            }
+        });
+        comprarBitCoin.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                wallet.aceptarTransaccion(wallet.precioTransaccion(Wallet.BITCOIN), Wallet.BITCOIN);
+                ventana.repintarWallet();
+            }
+        });
+        comprarEthereum.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                wallet.aceptarTransaccion(wallet.precioTransaccion(Wallet.ETHEREUM), Wallet.ETHEREUM);
+                ventana.repintarWallet();
+            }
+        });
+        comprarDogeCoin.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                wallet.aceptarTransaccion(wallet.precioTransaccion(Wallet.DOGECOIN), Wallet.DOGECOIN);
+                ventana.repintarWallet();
             }
         });
 
