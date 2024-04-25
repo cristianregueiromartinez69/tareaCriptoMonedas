@@ -1,6 +1,6 @@
 package interfaz;
 
-import LerDatos.LerDatos;
+
 import services.Wallet;
 
 import javax.swing.*;
@@ -76,6 +76,7 @@ public class WalletPanel extends JPanel {
         addDollar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 wallet.setEuros(wallet.getEuros()+ LerDatos.lerDouble("Introduce el numero de Dolares que vas a añadir"));
                 ventana.repintarWallet();
             }
